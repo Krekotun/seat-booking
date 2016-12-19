@@ -6,24 +6,24 @@ const Seats = (props) => {
 	let seats = props.seats
 
 	const handleSeatClick = (target, seat) => {
-		let width = target.offsetWidth
-		let height = target.offsetHeight
-
-
 		let rootElRect = document.querySelector('.iquiz_tables--area').getBoundingClientRect()
 		let targetRect = target.getBoundingClientRect()
 
-		let offsetY = targetRect.top - rootElRect.top
-		let offsetX = targetRect.left - rootElRect.left
+		let position = {
+			x: (targetRect.left - rootElRect.left) + targetRect.width/2,
+			y: targetRect.top - rootElRect.top
+		}
 
 		props.actions.closeInfoPopup()
+		props.actions.closeFormPopup()
 
 		if (seat.admins) return
 
-		props.actions.openInfoPopup(seat.team, {
-			x: (offsetX + targetRect.width/2) || 0,
-			y: offsetY || 0
-		})
+		if (seat.reserved) {
+			props.actions.openInfoPopup(seat.team, position)
+		} else {
+			props.actions.openFormPopup(seat, position)
+		}
 	}
 
 	return (

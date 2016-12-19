@@ -6,7 +6,9 @@ import {
 	SET_FETCHED_SEATS,
 	SET_LOADING,
 	OPEN_INFO_POPUP,
-	CLOSE_INFO_POPUP
+	CLOSE_INFO_POPUP,
+	OPEN_FORM_POPUP,
+	CLOSE_FORM_POPUP
 } from './constants'
 
 import deepExtend from 'deep-extend'
@@ -92,12 +94,33 @@ function infoPopup(state = {}, action) {
 	}
 }
 
+function formPopup(state = {}, action) {
+	switch (action.type) {
+		case OPEN_FORM_POPUP:
+			return {
+				...state,
+				isOpened: true,
+				...action.payload
+			}
+
+		case CLOSE_FORM_POPUP:
+			return {
+				...state,
+				isOpened: false,
+				team: '',
+				position: {}
+			}
+
+		default: return state
+	}
+}
+
 const seatBookingReducers = combineReducers({
 	currentPage,
 	loading,
 	seats,
 	app: dumb,
-	formPopup: dumb,
+	formPopup: formPopup,
 	infoPopup: infoPopup
 })
 

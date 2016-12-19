@@ -38,10 +38,16 @@ const defaultState = {
 	currentPage: 1,
 	formPopup: {
 		isOpened: false,
-		tableId: null,
-		team: "A",
-		captain: "B",
-		phone: "234534645",
+		data: {
+			table_id: null,
+			team: "A",
+			captain: "B",
+			phone: "234534645",
+		},
+		position: {
+			x: 0,
+			y: 0
+		}
 	},
 	infoPopup: {
 		isOpened: false,

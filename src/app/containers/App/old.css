@@ -302,10 +302,6 @@
 .iquiz_tables--table_info {
   text-align: center;
 }
-.iquiz_tables--info_popup {
-	margin: -15px 0 0;
-	transform: translate(-50%, -100%)
-}
 .iquiz_tables--popup {
   display: none;
   width: 250px;
@@ -315,6 +311,8 @@
   padding: 20px;
   z-index: 100;
   box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+	margin: -15px 0 0;
+	transform: translate(-50%, -100%)
 }
 .iquiz_tables--popup.-show {
 	display: block;
