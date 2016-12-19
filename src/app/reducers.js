@@ -1,9 +1,21 @@
 import { combineReducers } from 'redux'
 
+import {
+	SET_PAGE,
+	BOOK_SEAT,
+	SET_FETCHED_SEATS,
+	SET_LOADING,
+	OPEN_INFO_POPUP,
+	CLOSE_INFO_POPUP
+} from './constants'
+
+import deepExtend from 'deep-extend'
+
+
 function currentPage(state = 1, action) {
 	switch (action.type) {
-		case 'SET_PAGE':
-			currentPage: action.payload
+		case SET_PAGE:
+			return action.payload
 		default:
 			return state
 	}
@@ -11,17 +23,82 @@ function currentPage(state = 1, action) {
 
 function loading(state = false, action) {
 	switch (action.type) {
-		case 'SET_LOADING':
+		case SET_LOADING:
 			return action.payload
+		default: return state
+	}
+}
+
+function seats(state = [], action) {
+	switch (action.type) {
+		case SET_FETCHED_SEATS:
+			return fetchSeats(state, action)
+		// case BOOK_SEAT:
+		// 	return
+		default: return state
+	}
+}
+
+function fetchSeats(state, action) {
+	let fetchedSeats = action.payload
+
+	return state.map((seat) => {
+		let result = seat
+		if (seat.reserved || seat.admins) return result
+
+		fetchedSeats.forEach((fetchedSeat, i) => {
+			if (+seat.table_id === +fetchedSeat.table_id) {
+				result = bookSeat(seat, fetchedSeat)
+			}
+		})
+
+		return result
+	})
+}
+
+function bookSeat(state, seat) {
+	return {
+		...state,
+		...seat,
+		reserved: true
+	}
+}
+
+function dumb(state = {}, action) {
+	switch (action.type) {
 		default:
 			return state
+	}
+}
+
+function infoPopup(state = {}, action) {
+	switch (action.type) {
+		case OPEN_INFO_POPUP:
+			return {
+				...state,
+				isOpened: true,
+				...action.payload
+			}
+
+		case CLOSE_INFO_POPUP:
+			return {
+				...state,
+				isOpened: false,
+				team: '',
+				position: {}
+			}
+
+		default: return state
 	}
 }
 
 const seatBookingReducers = combineReducers({
 	currentPage,
 	loading,
-
+	seats,
+	app: dumb,
+	formPopup: dumb,
+	infoPopup: infoPopup
 })
 
 export default seatBookingReducers

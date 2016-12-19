@@ -13,7 +13,6 @@ const Loading = (props) => {
 }
 
 export default connect(function(state) {
-	console.log(state.loading);
 	return {
 		loading: state.loading
 	}

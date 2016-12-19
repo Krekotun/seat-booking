@@ -302,6 +302,10 @@
 .iquiz_tables--table_info {
   text-align: center;
 }
+.iquiz_tables--info_popup {
+	margin: -15px 0 0;
+	transform: translate(-50%, -100%)
+}
 .iquiz_tables--popup {
   display: none;
   width: 250px;
@@ -312,6 +316,10 @@
   z-index: 100;
   box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
+.iquiz_tables--popup.-show {
+	display: block;
+}
+
 .iquiz_tables--popup:after {
   top: 100%;
   left: 50%;
@@ -389,21 +397,10 @@
   text-align: center;
   padding: 10px 0 45px;
 }
-.iquiz_tables--nav label {
+.iquiz_tables--nav button {
   position: relative;
   cursor: pointer;
   display: inline-block;
-}
-.iquiz_tables--nav label input {
-  position: absolute;
-  left: -9999px;
-}
-.iquiz_tables--nav label input:checked + span {
-  background: #fff;
-  color: #002755;
-}
-.iquiz_tables--nav span {
-  display: block;
   border: 0;
   padding: 0;
   margin: 0;
@@ -417,6 +414,10 @@
   color: #fff;
   font-size: 16px;
   line-height: 30px;
+}
+.iquiz_tables--nav button.-active {
+	background: #fff;
+  color: #002755;
 }
 .iquiz_tables.-qnq .iquiz_tables--table.-org {
   top: 165px;

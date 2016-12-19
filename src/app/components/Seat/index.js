@@ -1,23 +1,27 @@
 import React from 'react';
 import cx from 'classnames'
+import Team from './Team'
+import Admins from './Admins'
 
 const Seat = (props) => {
 	let klass = cx(
 		'iquiz_tables--table',
-		`-n_${props.tableId}`,
+		`-n_${props.table_id}`,
 		{
-			'-reserved': props.isReserved
+			'-org': props.admins,
+			'-reserved': props.reserved
 		}
 	)
 
 	return (
-		<div className={ klass }>
+		<div className={ klass } onClick={ props.onClick }>
 			<div className="iquiz_tables--table_inner">
-				<button className="iquiz_tables--table_opener">
-					<strong class="iquiz_tables--table_num">
-						{ props.tableId }
-					</strong>
-				</button>
+
+				{ props.admins === true ?
+					<Admins /> :
+					<Team table_id={ props.table_id } />
+				}
+
 			</div>
 		</div>
 	)

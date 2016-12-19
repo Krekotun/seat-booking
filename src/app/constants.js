@@ -1,2 +1,6 @@
 export const SET_PAGE = 'SET_PAGE'
 export const BOOK_SEAT = 'BOOK_SEAT'
+export const SET_LOADING = 'SET_LOADING'
+export const SET_FETCHED_SEATS = 'SET_FETCHED_SEATS'
+export const OPEN_INFO_POPUP = 'OPEN_INFO_POPUP'
+export const CLOSE_INFO_POPUP = 'CLOSE_INFO_POPUP'
