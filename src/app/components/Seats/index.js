@@ -1,47 +1,56 @@
-import React from 'react';
+import React, { Component } from 'react';
 import connect from './connect'
 import Seat from 'components/Seat'
 
-const Seats = (props) => {
-	let seats = props.seats
+class Seats extends Component {
+	constructor(props) {
+		super()
 
-	const handleSeatClick = (target, seat) => {
-		let rootElRect = document.querySelector('.iquiz_tables--area').getBoundingClientRect()
-		let targetRect = target.getBoundingClientRect()
-
-		let position = {
-			x: (targetRect.left - rootElRect.left) + targetRect.width/2,
-			y: targetRect.top - rootElRect.top
-		}
-
-		props.actions.closeInfoPopup()
-		props.actions.closeFormPopup()
-
-		if (seat.admins) return
-
-		if (seat.reserved) {
-			props.actions.openInfoPopup(seat.team, position)
-		} else {
-			props.actions.openFormPopup(seat, position)
-		}
+		this.handleDocumentClick = this.handleDocumentClick.bind(this)
 	}
 
-	return (
-		<div>
+	componentDidMount() {
+		this.infoPopup = document.querySelector('.iquiz_tables--info_popup')
+		this.formPopup = document.querySelector('.iquiz_tables--form')
+		document.addEventListener('click', this.handleDocumentClick, true)
+	}
 
-			{
-				seats && seats.map((seat, i) => {
-					return (
-						<Seat
-							key={ i }
-							onClick={ (e) => handleSeatClick(e.currentTarget, seat) }
-							{...seat} />
-					)
-				})
-			}
+	componentWillUnmount() {
+		document.removeEventListener('click', this.handleDocumentClick, true)
+	}
 
-		</div>
-	)
+	handleDocumentClick(e) {
+		let target = e.target
+
+		if (target === this.infoPopup || this.infoPopup.contains(target) ||
+				target === this.formPopup || this.formPopup.contains(target) ) {
+			return
+		}
+
+		this.props.actions.closeFormPopup()
+		this.props.actions.closeInfoPopup()
+	}
+
+	render() {
+		let seats = this.props.seats
+
+		return (
+			<div>
+
+				{
+					seats && seats.map((seat, i) => {
+						return (
+							<Seat
+								key={ i }
+								seat={seat}
+								actions={ this.props.actions }/>
+						)
+					})
+				}
+
+			</div>
+		)
+	}
 }
 
 export default connect(Seats)

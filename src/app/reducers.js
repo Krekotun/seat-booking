@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import { reducer as formReducer } from 'redux-form'
 
 import {
 	SET_PAGE,
@@ -121,7 +122,8 @@ const seatBookingReducers = combineReducers({
 	seats,
 	app: dumb,
 	formPopup: formPopup,
-	infoPopup: infoPopup
+	infoPopup: infoPopup,
+	form: formReducer
 })
 
 export default seatBookingReducers
