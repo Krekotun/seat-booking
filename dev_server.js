@@ -12,6 +12,11 @@ new WebpackDevServer(webpack(config), {
 		version: false,
 		hash: false,
 		chunkModules: false
+	},
+	proxy: {
+		'*': {
+			target: 'http://seat-booking.dev:8989',
+		}
 	}
 }).listen(4000, 'localhost', function (err, result) {
   if (err) {

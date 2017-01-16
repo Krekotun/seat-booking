@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware } from 'redux'
 import seatBookingReducers from './reducers'
+import thunk from 'redux-thunk'
 
 const polluteSeats = () => {
 	const floors = {
@@ -31,18 +32,18 @@ const polluteSeats = () => {
 const defaultState = {
 	loading: false,
 	seats: polluteSeats(),
-	app: {
-		gameNum: 181,
-		gameType: 'qnq'
+	game: {
+		num: 243,
+		type: 'qnq'
 	},
 	currentPage: 1,
 	formPopup: {
 		isOpened: false,
 		data: {
 			table_id: null,
-			team: "A",
-			captain: "B",
-			phone: "234534645",
+			team: "",
+			captain: "",
+			phone: "",
 		},
 		position: {
 			x: 0,
@@ -59,6 +60,10 @@ const defaultState = {
 	},
 }
 
-const store = createStore(seatBookingReducers, defaultState)
+const store = createStore(
+	seatBookingReducers,
+	defaultState,
+	applyMiddleware(thunk)
+)
 
 export default store

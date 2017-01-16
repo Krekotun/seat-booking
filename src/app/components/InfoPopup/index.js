@@ -12,15 +12,9 @@ const InfoPopup = (props) => {
 		left: props.position.x
 	}
 
-	// function handleClick(e) {
-	// 	console.log(props);
-	// 	dispatch()
-	// }
-
 	return (
 		<div
 			className={ klass } style={ style }
-			// onClick={ handleClick }
 		>
 			<div className="iquiz_tables--table_info">{ props.team }</div>
 		</div>

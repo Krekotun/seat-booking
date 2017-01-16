@@ -23,7 +23,7 @@ module.exports = {
 
 	output: {
 		path: __dirname + '/public/assets/',
-		publicPath: '/assets',
+		publicPath: '/assets/',
 		filename: '[name].js'
 	},
 
@@ -38,7 +38,7 @@ module.exports = {
 
 	devServer: {
 		contentBase: __dirname + '/public',
-		historyApiFallback: false,
+		historyApiFallback: true,
 		inline: true,
 		hot: true
 	},

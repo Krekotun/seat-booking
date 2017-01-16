@@ -1,32 +1,40 @@
 import React, { Component } from 'react';
-import './old.css'
-import Loading from 'components/Loading'
 import { Provider } from 'react-redux'
 import store from '../../store.js'
+import {
+	getSeats,
+	setGameData
+} from '../../actions'
+
+import Loading from 'components/Loading'
 import Area from 'components/Area'
 import Pagination from 'components/Pagination'
-import seats from './seats.hjson'
+
+import './old.css'
 
 
 class App extends Component {
 	componentDidMount() {
 
-		store.dispatch({
-			type: 'SET_LOADING',
-			payload: true
-		})
+		this.bootstrap()
 
-		setTimeout(() => {
-			store.dispatch({
-				type: 'SET_FETCHED_SEATS',
-				payload: seats
-			})
-			store.dispatch({
-				type: 'SET_LOADING',
-				payload: false
-			})
-		}, 1000)
+	}
 
+	bootstrap() {
+		let gameData = JSON.parse( document.getElementById('app').getAttribute('data-game') )
+
+		store.dispatch(
+			setGameData(
+				gameData.num,
+				gameData.type
+			)
+		)
+
+		let state = store.getState()
+
+		store.dispatch(
+			getSeats(state.game.num, state.game.type)
+		)
 	}
 
 	render() {

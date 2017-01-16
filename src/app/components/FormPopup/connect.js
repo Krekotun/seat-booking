@@ -6,6 +6,12 @@ function mapStateToProps(state) {
 	}
 }
 
+const mapDispatchToProps = (dispatch) => {
+	return {
+		actions: bindActionCreators(actionCreators, dispatch)
+	}
+}
+
 export default function(component) {
 	return connect(mapStateToProps)(component)
 }

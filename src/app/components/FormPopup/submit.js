@@ -1,7 +1,9 @@
 import { SubmissionError } from 'redux-form'
 
-function submit(values) {
-	console.log(values);
+function submit(dispatch) {
+	return (values) => {
+		
+	}
 }
 
 export default submit

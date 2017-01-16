@@ -6,6 +6,7 @@ import Admins from './Admins'
 class Seat extends Component {
 	constructor(props) {
 		super()
+		
 		this.handleClick = this.handleClick.bind(this)
 	}
 
@@ -16,8 +17,6 @@ class Seat extends Component {
 		let el = this.container
 
 		if (!el.contains(e.target) || seat.admins) return
-
-		// console.log(e.target, e.currentTarget, el);
 
 		let rootElRect = document.querySelector('.iquiz_tables--area').getBoundingClientRect()
 		let targetRect = this.container && this.container.getBoundingClientRect()
@@ -34,14 +33,6 @@ class Seat extends Component {
 		} else {
 			this.props.actions.openFormPopup(seat, position)
 		}
-	}
-
-	componentDidMount() {
-		// document.addEventListener('click', this.handleClick, true)
-	}
-
-	componentWillUnmount() {
-		// document.removeEventListener('click', this.handleClick, true)
 	}
 
 	render() {

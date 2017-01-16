@@ -1,0 +1,9 @@
+<?php
+
+$config = array(
+	'IQ_DB_NAME' => '',
+	'IQ_DB_USERNAME' => '',
+	'IQ_DB_PASSWORD' => ''
+);
+
+?>

@@ -6,7 +6,7 @@
 		<!-- <link rel="stylesheet" href="./assets/styles/main.css" media="screen" charset="utf-8"> -->
 	</head>
 	<body>
-		<div id="app"></div>
+		<div id="app" data-game='{"num": 132, "type": "qnq"}'></div>
 		<script src="./assets/index.js" charset="utf-8"></script>
 	</body>
 </html>

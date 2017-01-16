@@ -9,7 +9,8 @@ import {
 	OPEN_INFO_POPUP,
 	CLOSE_INFO_POPUP,
 	OPEN_FORM_POPUP,
-	CLOSE_FORM_POPUP
+	CLOSE_FORM_POPUP,
+	SET_GAME_DATA
 } from './constants'
 
 import deepExtend from 'deep-extend'
@@ -47,7 +48,7 @@ function fetchSeats(state, action) {
 
 	return state.map((seat) => {
 		let result = seat
-		if (seat.reserved || seat.admins) return result
+		if (seat.reserved || seat.admins || !fetchedSeats.length) return result
 
 		fetchedSeats.forEach((fetchedSeat, i) => {
 			if (+seat.table_id === +fetchedSeat.table_id) {
@@ -101,15 +102,33 @@ function formPopup(state = {}, action) {
 			return {
 				...state,
 				isOpened: true,
-				...action.payload
+				data: {
+					...action.payload.data
+				},
+				position: action.payload.position
 			}
 
 		case CLOSE_FORM_POPUP:
 			return {
 				...state,
 				isOpened: false,
-				team: '',
+				data: {
+					...state.data,
+					team: ''
+				},
 				position: {}
+			}
+
+		default: return state
+	}
+}
+
+function game(state = {}, action) {
+	switch (action.type) {
+		case SET_GAME_DATA:
+			return {
+				...state,
+				...action.payload
 			}
 
 		default: return state
@@ -120,9 +139,9 @@ const seatBookingReducers = combineReducers({
 	currentPage,
 	loading,
 	seats,
-	app: dumb,
-	formPopup: formPopup,
-	infoPopup: infoPopup,
+	game,
+	formPopup,
+	infoPopup,
 	form: formReducer
 })
 
