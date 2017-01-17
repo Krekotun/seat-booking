@@ -6,7 +6,7 @@ import InfoPopup from 'components/InfoPopup'
 import FormPopup from 'components/FormPopup'
 
 const Area = (props) => {
-	let klass = cx('iquiz_tables--area', `-area_${props.currentPage}`)
+	let klass = cx('iquiz_tables--area', `-area_${props.pagination}`)
 	return (
 		<div className={ klass }>
 			<InfoPopup />
@@ -18,7 +18,7 @@ const Area = (props) => {
 
 const mapStateToProps = (state) => {
 	return {
-		currentPage: state.currentPage
+		pagination: state.pagination
 	}
 }
 

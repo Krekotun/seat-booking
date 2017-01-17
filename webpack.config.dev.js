@@ -47,7 +47,8 @@ module.exports = {
 		alias: {
 			components: __dirname + '/src/app/components',
 			containers: __dirname + '/src/app/containers',
-			app: __dirname + '/src/app'
+			app: __dirname + '/src/app',
+			store: __dirname + '/src/app/store'
 		},
 		modulesDirectories: ['node_modules'],
 		extensions: ['', '.js']

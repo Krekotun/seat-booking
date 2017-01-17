@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import * as actions from 'store/modules/formPopup'
 
 function mapStateToProps(state) {
 	return {
@@ -8,7 +9,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		actions: bindActionCreators(actionCreators, dispatch)
+		actions: bindActionCreators(actions, dispatch)
 	}
 }
 

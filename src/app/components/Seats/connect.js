@@ -1,22 +1,29 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as actionCreators from './actions'
+import * as seatsActions from 'store/modules/seats'
+import * as formPopupActions from 'store/modules/formPopup'
+import * as infoPopupActions from 'store/modules/infoPopup'
 
 const mapStateToProps = (state) => {
 	return {
-		seats: filterByPage(state.seats, state.currentPage)
+		seats: filterByPage(state.seats, state.pagination),
+		game: state.game
 	}
 }
 
-function filterByPage(seats, currentPage) {
+function filterByPage(seats, pagination) {
 	return seats.filter(seat => {
-		return +seat.page === +currentPage
+		return +seat.page === +pagination
 	})
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		actions: bindActionCreators(actionCreators, dispatch)
+		actions: bindActionCreators({
+			...seatsActions,
+			...formPopupActions,
+			...infoPopupActions
+		}, dispatch)
 	}
 }
 

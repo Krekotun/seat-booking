@@ -1,16 +1,16 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as actionCreators from './actions'
+import * as actions from 'store/modules/pagination'
 
 const mapStateToProps = (state) => {
 	return {
-		currentPage: state.currentPage
+		pagination: state.pagination
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		actions: bindActionCreators(actionCreators, dispatch)
+		actions: bindActionCreators(actions, dispatch)
 	}
 }
 

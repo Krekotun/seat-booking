@@ -13,6 +13,11 @@ class Seats extends Component {
 		this.infoPopup = document.querySelector('.iquiz_tables--info_popup')
 		this.formPopup = document.querySelector('.iquiz_tables--form')
 		document.addEventListener('click', this.handleDocumentClick, true)
+
+		this.props.actions.getSeats(
+			this.props.game.num,
+			this.props.game.type
+		)
 	}
 
 	componentWillUnmount() {

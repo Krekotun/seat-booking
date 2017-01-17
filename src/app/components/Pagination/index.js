@@ -8,14 +8,14 @@ const Pagination = (props) => {
 
 		<nav className="iquiz_tables--nav">
 			<button
-				className={ props.currentPage === 1 ? '-active' : '' }
+				className={ props.pagination === 1 ? '-active' : '' }
 				onClick={ () => actions.setPage(1) }
 			>
 				1
 			</button>
 
 			<button
-				className={ props.currentPage === 2 ? '-active' : '' }
+				className={ props.pagination === 2 ? '-active' : '' }
 				onClick={ () => actions.setPage(2) }
 			>
 				2
