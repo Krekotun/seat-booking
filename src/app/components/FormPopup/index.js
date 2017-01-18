@@ -19,6 +19,7 @@ const FormPopup = (props) => {
 			className={ klass }
 			style={ style }
 		>
+			{ props.isLoading && '<span>loading</span>' }
 			<Form />
 		</div>
 	)

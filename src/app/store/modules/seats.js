@@ -1,9 +1,11 @@
 import axios from 'axios'
 import * as loadingActions from 'store/modules/loading'
+import * as formPopupActions from 'store/modules/formPopup'
 
 const SET_FETCHED_SEATS = 'SET_FETCHED_SEATS'
 const BOOK_SEAT = 'BOOK_SEAT'
-export const FETCH_SEATS = 'FETCH_SEATS'
+const FETCH_SEATS = 'FETCH_SEATS'
+const CLEAR_SEATS = 'CLEAR_SEATS'
 
 const initialState = (function() {
 	const floors = {
@@ -35,7 +37,19 @@ export default function reducer(state = initialState, action = {}) {
 		case SET_FETCHED_SEATS:
 			return fetchSeats(state, action)
 		case BOOK_SEAT:
-			return state
+			return state.map((seat) => {
+				if (+seat.table_id === +action.payload.table_id) {
+					return {
+						...seat,
+						...action.payload,
+						reserved: true
+					}
+				}
+
+				return seat
+			})
+		case CLEAR_SEATS:
+			return initialState
 		default: return state
 	}
 }
@@ -49,7 +63,7 @@ function fetchSeats(state, action) {
 
 		fetchedSeats.forEach((fetchedSeat, i) => {
 			if (+seat.table_id === +fetchedSeat.table_id) {
-				result = bookSeat(seat, fetchedSeat)
+				result = fillSeat(seat, fetchedSeat)
 			}
 		})
 
@@ -57,7 +71,7 @@ function fetchSeats(state, action) {
 	})
 }
 
-function bookSeat(state, seat) {
+function fillSeat(state, seat) {
 	return {
 		...state,
 		...seat,
@@ -79,6 +93,7 @@ export function getSeats(gameNum, gameType) {
 				}
 			})
 			.then((response) => {
+				dispatch(clearSeats())
 				dispatch(setFetchedSeats(response.data))
 				dispatch(loadingActions.hideLoading())
 			})
@@ -86,9 +101,43 @@ export function getSeats(gameNum, gameType) {
 
 }
 
+export function saveSeat(data) {
+	return (dispatch) => {
+		dispatch(formPopupActions.setLoading(true))
+
+		axios
+			.post('backend/set_tables.php', {
+				game_num: data.game_num,
+				game_type: data.game_type,
+				table_id: data.table_id,
+				team: data.team,
+				captain: data.captain,
+				phone: data.phone
+			})
+			.then((response) => {
+				dispatch(clearSeats())
+				dispatch(setFetchedSeats(response.data))
+				dispatch(formPopupActions.setLoading(false))
+			})
+	}
+}
+
 export function setFetchedSeats(seats) {
 	return {
 		type: SET_FETCHED_SEATS,
 		payload: seats
+	}
+}
+
+export function bookSeat(seat) {
+	return {
+		type: BOOK_SEAT,
+		payload: seat
+	}
+}
+
+export function clearSeats() {
+	return {
+		type: CLEAR_SEATS
 	}
 }

@@ -1,13 +1,19 @@
-export const OPEN_FORM_POPUP = 'OPEN_FORM_POPUP'
-export const CLOSE_FORM_POPUP = 'CLOSE_FORM_POPUP'
+import { reset, change } from 'redux-form'
+
+export const OPEN = 'form-popup/OPEN'
+export const CLOSE = 'form-popup/CLOSE'
+export const SET_LOADING = 'form-popup/SET_LOADING'
 
 const initialState = {
 	isOpened: false,
+	isLoading: false,
 	data: {
 		table_id: null,
 		team: "",
 		captain: "",
 		phone: "",
+		game_num: "",
+		game_type: ""
 	},
 	position: {
 		x: 0,
@@ -17,7 +23,7 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
-		case OPEN_FORM_POPUP:
+		case OPEN:
 			return {
 				...state,
 				isOpened: true,
@@ -27,7 +33,7 @@ export default function reducer(state = initialState, action) {
 				position: action.payload.position
 			}
 
-		case CLOSE_FORM_POPUP:
+		case CLOSE:
 			return {
 				...state,
 				isOpened: false,
@@ -38,26 +44,46 @@ export default function reducer(state = initialState, action) {
 				position: {}
 			}
 
+		case SET_LOADING:
+			return {
+				...state,
+				isLoading: action.payload
+			}
+
 		default: return state
 	}
 }
 
 export function openFormPopup(seat, position) {
-	return {
-		type: OPEN_FORM_POPUP,
-		payload: {
-			data: {
-				table_id: seat.table_id
-			},
-			position: {
-				...position
+	return (dispatch) => {
+		dispatch({
+			type: OPEN,
+			payload: {
+				data: {
+					table_id: seat.table_id
+				},
+				position: {
+					...position
+				}
 			}
-		}
+		})
+
+		dispatch( change('reservation', 'table_id', seat.table_id) )
 	}
+
 }
 
 export function closeFormPopup() {
+	return (dispatch) => {
+		dispatch({
+			type: CLOSE
+		})
+	}
+}
+
+export function setLoading(value) {
 	return {
-		type: CLOSE_FORM_POPUP
+		type: SET_LOADING,
+		payload: value
 	}
 }

@@ -72,8 +72,6 @@ function iquiz_db_set_table($bindings, $conn) {
 		values(null, :table_id, :team, :captain, :phone, :game_num, :game_type)"
 	);
 	$stmt->execute($bindings);
-
-	return $result;
 }
 
 function iquiz_db_check_reg_is_open($bindings, $conn) {

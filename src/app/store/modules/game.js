@@ -1,6 +1,9 @@
 const SET_GAME_DATA = 'SET_GAME_DATA'
 
-const initialState = {}
+const initialState = {
+	num: '',
+	type: ''
+}
 
 export default function reducer(state = initialState, action) {
 	switch (action.type) {

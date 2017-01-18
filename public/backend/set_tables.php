@@ -6,12 +6,12 @@ $conn = iquiz_db_connect();
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
 
-$table_id = $request->tableId;
+$table_id = $request->table_id;
 $team = $request->team;
 $captain = $request->captain;
 $phone = $request->phone;
-$game_num = $request->gameNum;
-$game_type = $request->gameType;
+$game_num = $request->game_num;
+$game_type = $request->game_type;
 
 if ($table_id and $team and $captain and $phone and $game_num and $game_type) {
 	if ($conn) {
@@ -31,14 +31,27 @@ if ($table_id and $team and $captain and $phone and $game_num and $game_type) {
 		if ($is_open) {
 
 			if (!$exist) {
-				iquiz_db_set_table(array(
-					'table_id' => $table_id,
-					'team' => $team,
-					'captain' => $captain,
-					'phone' => $phone,
-					'game_num' => $game_num,
-					'game_type' => $game_type
-				),$conn);
+				iquiz_db_set_table(
+					array(
+						'table_id' => $table_id,
+						'team' => $team,
+						'captain' => $captain,
+						'phone' => $phone,
+						'game_num' => $game_num,
+						'game_type' => $game_type
+					),
+					$conn
+				);
+
+				$result = iquiz_db_get_tables(
+					array(
+						'game_num' => $game_num,
+						'game_type' => $game_type
+					),
+					$conn
+				);
+
+				echo json_encode($result);
 
 			} else {
 				echo 'exists';
@@ -51,7 +64,7 @@ if ($table_id and $team and $captain and $phone and $game_num and $game_type) {
 	} else {
 		echo 'Can\'t connect to db';
 	}
-	
+
 } else {
 	echo 'не хватает переменных';
 }

@@ -1,16 +1,16 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form'
 import validate from './validate'
-import submit from './submit'
 import Input from './Input'
 import { connect } from 'react-redux'
+import { saveSeat } from 'store/modules/seats'
 
 let Form = (props) => {
-	const { handleSubmit, pristine, reset, submitting } = props
+	const { handleSubmit, pristine, reset, submitting, dispatch } = props
 
 	return (
 		<form
-			onSubmit={ handleSubmit( submit(props.dispatch) ) }
+			onSubmit={ handleSubmit( values => dispatch( saveSeat(values) ) ) }
 		>
 			<fieldset>
 				<Field component={ Input } name="team" label="Команда" />
@@ -19,7 +19,11 @@ let Form = (props) => {
 
 				<Field component={ Input } name="phone" label="Телефон" />
 
-				<Field component='input' type='hidden' name="table_id" label="Телефон" />
+				<Field component='input' type='hidden' name="table_id"/>
+
+				<Field component='input' type='hidden' name="game_num"/>
+
+				<Field component='input' type='hidden' name="game_type"/>
 
 				<button type="submit">Зарезервировать</button>
 			</fieldset>
@@ -36,7 +40,11 @@ Form = reduxForm({
 
 Form = connect(
 	state => ({
-		initialValues: state.formPopup.data
+		initialValues: {
+			...state.formPopup.data,
+			game_num: state.game.num,
+			game_type: state.game.type
+		}
 	})
 )(Form)
 
