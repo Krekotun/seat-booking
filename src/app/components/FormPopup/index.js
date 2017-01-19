@@ -6,7 +6,8 @@ import Form from './Form'
 const FormPopup = (props) => {
 
 	let klass = cx("iquiz_tables--form", "iquiz_tables--popup", {
-		'-show': props.isOpened
+		'-show': props.isOpened,
+		'-loading': props.isLoading
 	})
 
 	let style = {
@@ -19,7 +20,6 @@ const FormPopup = (props) => {
 			className={ klass }
 			style={ style }
 		>
-			{ props.isLoading && '<span>loading</span>' }
 			<Form />
 		</div>
 	)

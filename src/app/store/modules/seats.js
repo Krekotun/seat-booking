@@ -116,8 +116,11 @@ export function saveSeat(data) {
 			})
 			.then((response) => {
 				dispatch(clearSeats())
-				dispatch(setFetchedSeats(response.data))
+				dispatch(setFetchedSeats(response.data.tables))
 				dispatch(formPopupActions.setLoading(false))
+				if (response.data.status === 'exists') {
+					dispatch(formPopupActions.closeFormPopup())
+				}
 			})
 	}
 }

@@ -73,6 +73,10 @@ export function openFormPopup(seat, position) {
 
 }
 
+export function resetForm() {
+	return reset('reservation')
+}
+
 export function closeFormPopup() {
 	return (dispatch) => {
 		dispatch({

@@ -344,6 +344,7 @@
   content: 'Loading...';
   text-align: center;
   line-height: 220px;
+	border-radius: 5px;
 }
 .iquiz_tables--form fieldset {
   margin: 0;
