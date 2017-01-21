@@ -5,9 +5,9 @@
 Корнем для бекенда должна быть папка `/public`
 
 
-`npm run install` ставим зависимости и все такое
-`npm run start` — дев режим
-`npm run production` — продакшн, соответственно
+`npm run install` ставим зависимости и все такое  
+`npm run start` — дев режим  
+`npm run production` — продакшн, соответственно  
 
 
 ## База
