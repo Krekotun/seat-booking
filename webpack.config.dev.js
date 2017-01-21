@@ -66,6 +66,10 @@ module.exports = {
 				loader: 'style!css'
 			},
 			{
+				test: /\.styl?$/,
+				loader: 'style!css!stylus'
+			},
+			{
 				test: /\.sss?$/,
 				exclude: /(node_modules|bower_components)/,
 				loader: combineLoaders([
@@ -106,11 +110,6 @@ module.exports = {
 				plugins: ['transform-runtime']
 			},
 			{
-				test: /\.hjson$/,
-				exclude: /(node_modules|bower_components)/,
-				loader: 'hjson'
-			},
-			{
 				test: /\.json$/,
 				exclude: /(node_modules|bower_components)/,
 				loader: 'json'
@@ -148,6 +147,8 @@ module.exports = {
 			require('postcss-import'),
 			require('postcss-hexrgba'),
 			require('postcss-inline-svg'),
+			require('postcss-autoreset'),
+			require('postcss-initial'),
 			require('precss')
 		]
 	}

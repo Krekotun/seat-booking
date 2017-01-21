@@ -4,7 +4,7 @@ const HIDE = 'notify/HIDE'
 let hideTimer;
 
 const initialState = {
-	status: 'hide',
+	state: 'hide',
 	type: 'success',
 	text: ''
 }
@@ -13,19 +13,22 @@ export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case SHOW:
 			return {
-				status: 'show',
+				state: 'show',
 				...action.payload
 			}
 		case HIDE:
 			return {
-				...initialState
+				...state,
+				state: 'hide'
 			}
 		default: return state
 	}
 }
 
 export function showNotify(text, type) {
-	return dispatch => {
+	return (dispatch) => {
+		clearTimeout(hideTimer)
+
 		dispatch({
 			type: SHOW,
 			payload: {
@@ -36,8 +39,16 @@ export function showNotify(text, type) {
 
 		hideTimer = setTimeout(() => {
 			dispatch(hideNotify())
-		}, 2000)
+		}, 3000)
 	}
+}
+
+export function showError(text) {
+	return showNotify(text, 'error')
+}
+
+export function showSuccess(text) {
+	return showNotify(text, 'success')
 }
 
 export function hideNotify() {

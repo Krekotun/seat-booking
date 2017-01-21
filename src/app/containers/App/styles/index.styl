@@ -1,0 +1,481 @@
+@import 'mixins.styl'
+
+.iquiz_tables
+	&
+		width 780px
+		margin 0 auto
+		position relative
+		background #002755
+		display block
+
+		*
+			font-family Roboto, Arial, sans-serif
+			box-sizing border-box
+			margin 0
+			padding 0
+
+
+		// forms
+		fieldset
+			border 0
+
+		input
+		button
+		textarea
+			ibreset()
+			borderbox()
+
+		button
+			cursor pointer
+
+		&--inner
+			height 580px
+			position relative
+
+
+		&--area
+			&
+					position relative
+					width 780px
+					height 667px
+
+			&.-area_1
+				// margin -333px 0 0 0
+				background url('../images/area-1-ru.png') no-repeat
+				background-size 100%
+
+				for i in (1..15)
+					.iquiz_tables--table.-n_{i}
+						display block
+
+				for i in (30..31)
+					.iquiz_tables--table.-n_{i}
+						display block
+
+				for i in (16..29)
+					.iquiz_tables--table.-n_{i}
+						display none
+
+			&.-area_2
+				// margin -333px 0 0 0
+				background url('../images/area-2-ru.png') no-repeat
+				background-size 100%
+
+				.iquiz_tables--table.-org
+					display none
+
+				for i in (1..15)
+					.iquiz_tables--table.-n_{i}
+						display none
+
+				for i in (30..31)
+					.iquiz_tables--table.-n_{i}
+						display none
+
+				for i in (16..29)
+					.iquiz_tables--table.-n_{i}
+						display block
+
+		&--loading
+			&
+				display none
+				position absolute
+				top 0
+				left 0
+				width 100%
+				height 100%
+				background rgba(#fff, .9)
+				line-height 400px
+				z-index 100
+				text-align center
+
+			&.-show
+				display block
+
+
+		&--table
+			&
+				position absolute
+				width 70px
+				height 65px
+				margin -15px 0 0
+
+			&.-reserved
+				.iquiz_tables--table_inner
+					opacity .3
+
+		&--table_inner
+			position relative
+			width 70px
+			height 65px
+			background url('../images/table.png') center bottom no-repeat
+			background-size 100%
+
+		&--table_org
+			text-align center
+			position absolute
+			width 160px
+			left 50%
+			top 5px
+			margin 0 0 0 -80px
+			font-size 13px
+
+		&--table_num
+			display block
+			width 42px
+			height 42px
+			background rgba(#fff, .7)
+			border-radius 90px
+			font-size 22px
+			line-height 42px
+			text-align center
+			font-weight 300
+			position absolute
+			top 0
+			left 50%
+			margin 0 0 0 -22px
+
+		&--table_opener
+			position absolute
+			top 0
+			left 0
+			width 100%
+			height 100%
+			z-index 10
+			cursor pointer
+
+		&--table_info
+			text-align center
+
+
+		&--popup
+			display none
+			width 250px
+			background #fff
+			border-radius 5px
+			position absolute
+			padding 20px
+			z-index 100
+			box-shadow 0 1px 3px rgba(#000, .3)
+			margin: -15px 0 0
+			transform: translate(-50%, -100%)
+
+			&:after
+				top: 100%;
+				left: 50%;
+				border: solid transparent;
+				content: " ";
+				height: 0;
+				width: 0;
+				position: absolute;
+				pointer-events: none;
+				border-color: rgba(255, 255, 255, 0);
+				border-top-color: #ffffff;
+				border-width: 7px;
+				margin-left: -7px;
+
+			&.-show
+				display block
+
+		&--form
+			&
+				&:before
+					display none
+					position absolute
+					top 0
+					left 0
+					right 0
+					bottom 0
+					background #fff
+					opacity .9
+					content 'Loading...'
+					text-align center
+					line-height 220px
+
+				fieldset
+					margin 0
+					padding 0
+
+					input
+
+						&
+							font-size 16px
+							border 1px solid #a4c3e8
+							padding 10px
+							margin 0 0 10px
+							border-radius 5px
+							width 100%
+
+						&:focus
+							border-color #226ecd
+
+						&.-error
+							border-color red
+
+					button
+						&
+							ibreset()
+							border-radius 5px
+							background #226ecd
+							color #fff
+							font-size 16px
+							padding 10px
+							width 100%
+
+							&:hover
+								background #1e61b5
+
+							&:active
+								shadow(inset 0 2px 0 rgba(#000, .3))
+
+							&:disabled
+								opacity .5
+								background #226ecd
+
+			&.-loading
+				user-select none
+				&:before
+					display block
+
+		&--nav
+			text-align center
+			padding 30px 0
+
+			button
+				&
+					position relative
+					cursor pointer
+					display inline-block
+					margin 0 5px
+					width 30px
+					height 30px
+					border-radius 90px
+					border 1px solid #fff
+					color #fff
+					font-size 16px
+					line-height 30px
+
+				&.-active
+					color: #002755
+					background: #fff
+
+
+	// qnq
+	&.-qnq &
+		&--table
+			&.-org
+				top 165px
+				right 550px
+
+			&.-n_1
+				bottom 110px
+				right 70px
+
+			&.-n_2
+				bottom 110px
+				right 165px
+
+			&.-n_3
+				bottom 110px
+				right 260px
+
+			&.-n_4
+				bottom 110px
+				right 355px
+
+			&.-n_5
+				bottom 110px
+				right 450px
+
+			&.-n_6
+				bottom 110px
+				right 545px
+
+			&.-n_7
+				bottom 280px
+				right 535px
+
+			&.-n_8
+				bottom 280px
+				right 455px
+
+			&.-n_9
+				bottom 280px
+				right 375px
+
+			&.-n_10
+				bottom 280px
+				right 295px
+
+			&.-n_11
+				bottom 280px
+				right 215px
+
+			&.-n_30
+				bottom 280px
+				right 165px
+				right 135px
+
+			&.-n_31
+				bottom 280px
+				right 55px
+
+			&.-n_12
+				top 165px
+				right 425px
+
+			&.-n_13
+				top 165px
+				right 310px
+
+			&.-n_14
+				top 165px
+				right 195px
+
+			&.-n_15
+				top 165px
+				right 85px
+
+			&.-n_16
+				top 165px
+				left 120px
+
+			&.-n_17
+				top 165px
+				left 275px
+
+			&.-n_18
+				top 165px
+				left 420px
+
+			&.-n_19
+				top 165px
+				left 560px
+
+			&.-n_20
+				top 325px
+				left 100px
+
+			&.-n_21
+				top 325px
+				left 220px
+
+			&.-n_22
+				top 325px
+				left 340px
+
+			&.-n_23
+				top 325px
+				left 460px
+
+			&.-n_24
+				top 325px
+				left 580px
+
+			&.-n_25
+				bottom 120px
+				left 100px
+
+			&.-n_26
+				bottom 120px
+				left 220px
+
+			&.-n_27
+				bottom 120px
+				left 350px
+
+			&.-n_28
+				bottom 120px
+				left 470px
+
+			&.-n_29
+				bottom 120px
+				left 590px
+
+	// rqnq
+	&.-rqnq &
+		&--nav
+			display none
+		&--inner
+			height 566px
+		&--area
+			height 517px
+			margin-top -260px
+			&.-area_1
+				background url('../images/area-1-ro.png') no-repeat
+				background-size 100%
+
+		&--table
+			&.-org
+				bottom 80px
+				left 310px
+
+			&.-n_1
+				bottom 370px
+				left 190px
+
+			&.-n_2
+				bottom 370px
+				left 370px
+
+			&.-n_3
+				bottom 370px
+				left 530px
+
+			&.-n_4
+				bottom 230px
+				left 150px
+
+			&.-n_5
+				bottom 230px
+				left 310px
+
+			&.-n_6
+				bottom 230px
+				left 470px
+
+			&.-n_7
+				bottom 230px
+				left 610px
+
+			&.-n_8
+				bottom 80px
+				left 150px
+
+			&.-n_9
+				bottom 80px
+				left 470px
+
+			&.-n_10
+				bottom 80px
+				left 610px
+
+.notify
+	&
+		position: fixed
+		top: 15px
+		right: 15px
+		background: #fff
+		display: block
+		padding: 15px 20px
+		border-radius: 10px
+		font-size: 14px
+		visibility hidden
+		opacity 0
+		transition: opacity .3s ease, visibility .3s ease
+
+	&_error
+		background-color: #DE463D
+		color #fff
+
+	&_success
+		background-color: #5AB963
+		color: #fff
+
+	&_show
+		visibility visible
+		opacity 1
+
+	&_hide
+		visibility hidden
+		opacity 0

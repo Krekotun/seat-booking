@@ -1,6 +1,8 @@
 import axios from 'axios'
 import * as loadingActions from 'store/modules/loading'
 import * as formPopupActions from 'store/modules/formPopup'
+import * as infoPopupActions from 'store/modules/infoPopup'
+import * as notifyActions from 'store/modules/notify'
 
 const SET_FETCHED_SEATS = 'SET_FETCHED_SEATS'
 const BOOK_SEAT = 'BOOK_SEAT'
@@ -102,7 +104,10 @@ export function getSeats(gameNum, gameType) {
 }
 
 export function saveSeat(data) {
-	return (dispatch) => {
+	return (dispatch, getState) => {
+
+		let tablePosition = getState().formPopup.position
+
 		dispatch(formPopupActions.setLoading(true))
 
 		axios
@@ -118,8 +123,16 @@ export function saveSeat(data) {
 				dispatch(clearSeats())
 				dispatch(setFetchedSeats(response.data.tables))
 				dispatch(formPopupActions.setLoading(false))
+				dispatch(formPopupActions.closeFormPopup())
+
 				if (response.data.status === 'exists') {
-					dispatch(formPopupActions.closeFormPopup())
+					dispatch( notifyActions.showError('К сожалению, это место уже занято') )
+				}
+
+				if (response.data.status === 'saved') {
+					dispatch( notifyActions.showSuccess('Вы зарезервировали место') )
+					dispatch(formPopupActions.resetForm())
+					dispatch(infoPopupActions.openInfoPopup(data.team, tablePosition))
 				}
 			})
 	}

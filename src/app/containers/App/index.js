@@ -5,14 +5,16 @@ import store from 'store'
 import Loading from 'components/Loading'
 import Area from 'components/Area'
 import Pagination from 'components/Pagination'
+import Notify from 'components/Notify'
 import * as gameActions from 'store/modules/game'
+import * as notifyActions from 'store/modules/notify'
 
-import './old.css'
+import './styles/index.styl'
 
 
 class App extends Component {
 	componentWillMount() {
-		
+
 		let gameData = JSON.parse( document.getElementById('app').getAttribute('data-game') )
 
 		store.dispatch(
@@ -21,19 +23,24 @@ class App extends Component {
 				gameData.type
 			)
 		)
+
+
 	}
 
 	render() {
 		return (
 			<Provider store={ store }>
 				<div className="iquiz_tables -qnq">
-					<Loading />
 
 					<div className="iquiz_tables--inner">
 						<Area />
 					</div>
 
 					<Pagination />
+
+					<Loading />
+
+					<Notify />
 
 				</div>
 			</Provider>

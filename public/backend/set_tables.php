@@ -65,7 +65,7 @@ if ($table_id and $team and $captain and $phone and $game_num and $game_type) {
 			);
 
 			$result = array(
-				'status' => 'ok',
+				'status' => 'saved',
 				'tables' => getTables($conn, $game_num, $game_type)
 			);
 

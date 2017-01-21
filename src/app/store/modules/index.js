@@ -7,6 +7,7 @@ import pagination from './pagination'
 import seats from './seats'
 import formPopup from './formPopup'
 import infoPopup from './infoPopup'
+import notify from './notify'
 
 export default combineReducers({
 	game,
@@ -15,5 +16,6 @@ export default combineReducers({
 	seats,
 	formPopup,
 	infoPopup,
-	form: formReducer
+	form: formReducer,
+	notify
 })

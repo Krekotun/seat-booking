@@ -1,0 +1,61 @@
+// useful
+cut-text()
+  overflow hidden
+  white-space nowrap
+  -ms-text-overflow ellipsis
+  text-overflow ellipsis
+
+clearfix()
+  &:after
+    content ""
+    display table
+    clear both
+
+cf()
+  &:after
+    content ""
+    display table
+    clear both
+
+ibreset()
+  border 0
+  padding 0
+  margin 0
+  outline none
+  background none
+
+t-translate()
+  -ms-transform translate(arguments[0], arguments[1])
+  -webkit-transform translate(arguments[0], arguments[1])
+  transform translate(arguments[0], arguments[1])
+
+transition()
+  -webkit-transition arguments
+  -moz-transition arguments
+  -ms-transition arguments
+  -o-transition arguments
+  transition arguments
+
+user-select()
+  -webkit-user-select arguments
+  -moz-user-select arguments
+  user-select arguments
+
+placeholder()
+  if selector() == "&"
+    error( "placeholder() must be called from a ruleset!" )
+  &::-webkit-input-placeholder
+    {block}
+  &:-moz-placeholder
+    {block}
+  &::-moz-placeholder
+    {block}
+  &:-ms-input-placeholder
+    {block}
+
+// center block when poa+t50%+l50%
+center()
+	position absolute
+	top 50%
+	left 50%
+	t-translate(-50%, -50%)
