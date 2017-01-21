@@ -19,17 +19,6 @@ function iquiz_db_connect() {
 	}
 }
 
-// CREATE TABLE `iq_tables` (
-//   `id` int(11) NOT NULL AUTO_INCREMENT,
-//   `table_id` int(11) NOT NULL,
-//   `team` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-//   `captain` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-//   `phone` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-//   `game_num` int(11) NOT NULL,
-//   `game_type` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-//   PRIMARY KEY (`id`)
-// ) ENGINE=InnoDB AUTO_INCREMENT=3775 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
 function iquiz_db_get_tables($bindings, $conn) {
 	$stmt = $conn->prepare(
 		"SELECT table_id, team

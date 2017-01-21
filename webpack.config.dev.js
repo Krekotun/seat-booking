@@ -9,16 +9,22 @@ const autoprefixer = require('autoprefixer');
 // const hexRgba = require('postcss-hexrgba');
 const combineLoaders = require('webpack-combine-loaders');
 
+
+let indexEntry =
+	NODE_ENV === 'development' ?
+		[
+			'react-hot-loader/patch',
+			'webpack-dev-server/client?http://localhost:4000',
+			'webpack/hot/only-dev-server',
+			__dirname + '/src/app/index'
+		] :
+		[ __dirname + '/src/app/index' ]
+
 module.exports = {
 	context: __dirname,
 
 	entry: {
-		index: [
-			'react-hot-loader/patch',
-			'webpack-dev-server/client?http://localhost:4000',
-	    'webpack/hot/only-dev-server',
-			__dirname + '/src/app/index'
-		]
+		index: indexEntry
 	},
 
 	output: {
@@ -133,11 +139,10 @@ module.exports = {
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoErrorsPlugin(),
 		new webpack.DefinePlugin({
-			NODE_ENV: JSON.stringify(NODE_ENV)
-		}),
-		// new webpack.optimize.CommonsChunkPlugin({
-		// 	name: "common"
-		// })
+			'process.env': {
+		    NODE_ENV: JSON.stringify(NODE_ENV)
+		  }
+		})
 	],
 
 	postcss: () => {
