@@ -5,8 +5,8 @@ import Admins from './Admins'
 
 class Seat extends Component {
 	constructor(props) {
-		super()
-		
+		super(props)
+
 		this.handleClick = this.handleClick.bind(this)
 	}
 

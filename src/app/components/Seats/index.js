@@ -4,7 +4,7 @@ import Seat from 'components/Seat'
 
 class Seats extends Component {
 	constructor(props) {
-		super()
+		super(props);
 
 		this.handleDocumentClick = this.handleDocumentClick.bind(this)
 	}

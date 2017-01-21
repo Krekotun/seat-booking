@@ -1,28 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 import connect from './connect'
 import cx from 'classnames'
 import Form from './Form'
 
-const FormPopup = (props) => {
+class FormPopup extends Component {
+	constructor(props) {
+		super(props);
 
-	let klass = cx("iquiz_tables--form", "iquiz_tables--popup", {
-		'-show': props.isOpened,
-		'-loading': props.isLoading
-	})
-
-	let style = {
-		top: props.position.y,
-		left: props.position.x
+		this.popupHeight = 0;
 	}
 
-	return (
-		<div
-			className={ klass }
-			style={ style }
-		>
-			<Form />
-		</div>
-	)
+	componentDidMount() {
+		this.popupHeight = this.node.getBoundingClientRect().height;
+	}
+
+	render() {
+		let { isOpened, isLoading, position } = this.props;
+
+		let klass = cx("iquiz_tables--form", "iquiz_tables--popup", {
+			'-show': isOpened,
+			'-loading': isLoading,
+			'-flip': position.y - (this.popupHeight + 10) <= 0
+		})
+
+		let style = {
+			top: position.y,
+			left: position.x
+		}
+
+		return (
+			<div
+				className={ klass }
+				style={ style }
+				ref={ (node) => { this.node = node } }
+			>
+				<Form />
+			</div>
+		)
+	}
 }
 
 export default connect(FormPopup)
