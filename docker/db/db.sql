@@ -71,7 +71,7 @@ CREATE TABLE `iq_tables` (
   `game_num` int(11) NOT NULL,
   `game_type` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -80,7 +80,7 @@ CREATE TABLE `iq_tables` (
 
 LOCK TABLES `iq_tables` WRITE;
 /*!40000 ALTER TABLE `iq_tables` DISABLE KEYS */;
-INSERT INTO `iq_tables` VALUES (1,12,'sdf','sadf','2342342',127,'qnq');
+INSERT INTO `iq_tables` VALUES (1,1,'Test','Test','2342342',127,'qnq');
 /*!40000 ALTER TABLE `iq_tables` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -93,4 +93,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-24 19:19:25
+-- Dump completed on 2017-01-24 20:10:01

@@ -13,5 +13,5 @@ do
   eval $name="$value";
 done < /db/db.txt
 
-mysql --user=$ROOTLOGIN --password=$ROOTPASSWORD -e "CREATE DATABASE IF NOT EXISTS $dbname; CREATE USER '$login'@'localhost' IDENTIFIED BY '$password'; GRANT ALL PRIVILEGES ON $dbname . * TO '$login'@'localhost';"
+mysql --user=$ROOTLOGIN --password=$ROOTPASSWORD -e "CREATE DATABASE IF NOT EXISTS $dbname; GRANT ALL PRIVILEGES ON $dbname . * TO '$login'@'localhost' IDENTIFIED BY '$password';"
 mysql --user=$ROOTLOGIN --password=$ROOTPASSWORD $dbname < /db/db.sql
