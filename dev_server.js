@@ -15,7 +15,7 @@ new WebpackDevServer(webpack(config), {
 	},
 	proxy: {
 		'*': {
-			target: 'http://seat-booking.dev:8989',
+			target: 'http://localhost:8989',
 		}
 	}
 }).listen(4000, 'localhost', function (err, result) {

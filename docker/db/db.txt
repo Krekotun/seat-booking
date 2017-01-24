@@ -1,0 +1,3 @@
+login="seats"
+password="seats"
+dbname="seats"
