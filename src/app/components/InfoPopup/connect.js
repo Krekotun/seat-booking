@@ -1,10 +1,8 @@
 import { connect } from 'react-redux'
 
-function mapStateToProps(state) {
-	return {
-		...state.infoPopup
-	}
-}
+const mapStateToProps = (state) => ({
+	...state.infoPopup
+})
 
 export default function(component) {
 	return connect(mapStateToProps)(component)
