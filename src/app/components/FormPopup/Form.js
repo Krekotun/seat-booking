@@ -1,6 +1,6 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form'
-import validate from './validate'
+import validate from './helpers/validate'
 import Input from './Input'
 import { connect } from 'react-redux'
 import { saveSeat } from 'store/modules/seats'
