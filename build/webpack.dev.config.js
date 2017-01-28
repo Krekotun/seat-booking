@@ -19,14 +19,14 @@ const config = {
 		ignored: /node_modules/
 	},
 
-	devtool: 'cheap-inline-module-source-map',
+	devtool: 'cheap-module-inline-source-map',
 
 	devServer: {
-		contentBase: __dirname + '/public',
+		contentBase: path.resolve(__dirname, '../public'),
 		historyApiFallback: true,
 		inline: true,
 		hot: true
-	},
+	}
 }
 
 

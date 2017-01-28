@@ -7,6 +7,7 @@ new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
 	contentBase: path.resolve(__dirname, '../public'),
   hot: true,
+	historyApiFallback: true,
 	stats: {
 		assets: false,
 		colors: true,
