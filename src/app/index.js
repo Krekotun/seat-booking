@@ -1,22 +1,22 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import { AppContainer as RHWrapper } from 'react-hot-loader'
-import App from 'containers/App'
+import { AppContainer as ReactHotWrapper } from 'react-hot-loader'
+import Root from 'components/Root'
 
-function withRHL( RootElement ) {
+function withReactHotLoader( RootElement ) {
 	render(
-		<RHWrapper>
+		<ReactHotWrapper>
 			<RootElement />
-		</RHWrapper>,
+		</ReactHotWrapper>,
 		document.querySelector('#app')
 	);
 }
 
-withRHL(App)
+withReactHotLoader(Root)
 
 if (module.hot) {
-	module.hot.accept('containers/App', () => {
-		const rootEl = require('containers/App').default
-		withRHL( rootEl )
+	module.hot.accept('components/Root', () => {
+		const rootEl = require('components/Root').default
+		withReactHotLoader( rootEl )
 	});
 }

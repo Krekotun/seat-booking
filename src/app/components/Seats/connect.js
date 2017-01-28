@@ -5,7 +5,7 @@ import * as formPopupActions from 'store/modules/formPopup'
 import * as infoPopupActions from 'store/modules/infoPopup'
 
 const filterByPage = (seats, pagination) =>
-	seats.filter( (_) => +_.page === +pagination )
+	seats.filter( seat => +seat.page === +pagination )
 
 const mapStateToProps = (state) => ({
 	seats: filterByPage(state.seats, state.pagination),
