@@ -1,10 +1,11 @@
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config.dev');
+var config = require('./webpack.dev.config');
+var path = require('path')
 
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
-	contentBase: __dirname + '/public',
+	contentBase: path.resolve(__dirname, '../public'),
   hot: true,
 	stats: {
 		assets: false,

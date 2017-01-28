@@ -11,20 +11,20 @@ import * as notifyActions from 'store/modules/notify'
 
 import './styles/index.styl'
 
+const loadInitailData = () => {
+	let gameData = JSON.parse( document.getElementById('app').getAttribute('data-game') )
+
+	store.dispatch(
+		gameActions.setGameData(
+			gameData.num,
+			gameData.type
+		)
+	)
+}
 
 class App extends Component {
 	componentWillMount() {
-
-		let gameData = JSON.parse( document.getElementById('app').getAttribute('data-game') )
-
-		store.dispatch(
-			gameActions.setGameData(
-				gameData.num,
-				gameData.type
-			)
-		)
-
-
+		loadInitailData()
 	}
 
 	render() {
