@@ -8,8 +8,8 @@ module.exports = {
 			loader: 'react-hot-loader/webpack'
 		},
 		{
-			loader: 'babel'
+			loader: 'babel',
+			plugins: ['transform-runtime']
 		},
-	]),
-	plugins: ['transform-runtime']
+	])
 }
