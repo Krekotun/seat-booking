@@ -2,12 +2,7 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 const webpack = require('webpack');
 const path = require('path');
 
-const isDev = () =>
-	NODE_ENV === 'development'
-
-const isProd = () =>
-	NODE_ENV === 'production'
-
+// loaders
 const cssLoader = require('./loaders/css-loader')
 const stylusLoader = require('./loaders/stylus-loader')
 const jsLoader = require('./loaders/js-loader')
