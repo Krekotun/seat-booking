@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 import cx from 'classnames'
 import Form from './Form'
+import { shouldPopupFlip, getPopupPositionStyle } from 'helpers'
 
-const shouldPopupFlip = (positionY, popupHeight) =>
-	positionY - (popupHeight + 10) <= 0
-
-const getStyle = (position) => ({
-	top: position.y,
-	left: position.x
-})
 
 class FormPopup extends Component {
 	constructor(props) {
@@ -18,10 +12,7 @@ class FormPopup extends Component {
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		return (
-			nextProps.isLoading !== this.props.isLoading ||
-			nextProps.isOpened !== this.props.isOpened
-		)
+		return nextProps.isOpened !== this.props.isOpened
 	}
 
 	componentDidMount() {
@@ -40,7 +31,7 @@ class FormPopup extends Component {
 		return (
 			<div
 				className={ klass }
-				style={ getStyle(position) }
+				style={ getPopupPositionStyle(position) }
 				ref={ (node) => { this.node = node } }
 			>
 				<Form />

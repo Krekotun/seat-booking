@@ -15,12 +15,6 @@ const loadInitailData = (actions) => {
 
 class App extends Component {
 
-	shouldComponentUpdate(nextProps, nextState) {
-		console.log(nextProps, nextState);
-
-		return true
-	}
-
 	componentWillMount() {
 		loadInitailData(this.props.actions)
 	}

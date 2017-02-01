@@ -12,7 +12,9 @@ let Form = (props) => {
 		<form
 			onSubmit={ handleSubmit( values => dispatch( saveSeat(values) ) ) }
 		>
+
 			<fieldset>
+
 				<Field component={ Input } name="team" label="Команда" />
 
 				<Field component={ Input } name="captain" label="Капитан" />
@@ -26,7 +28,9 @@ let Form = (props) => {
 				<Field component='input' type='hidden' name="game_type"/>
 
 				<button type="submit">Зарезервировать</button>
+
 			</fieldset>
+
 		</form>
 	)
 }

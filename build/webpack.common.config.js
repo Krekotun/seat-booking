@@ -25,7 +25,8 @@ module.exports = {
 			components: path.resolve(__dirname, '../src/app/components'),
 			containers: path.resolve(__dirname, '../src/app/containers'),
 			app: path.resolve(__dirname, '../src/app'),
-			store: path.resolve(__dirname, '../src/app/store')
+			store: path.resolve(__dirname, '../src/app/store'),
+			helpers: path.resolve(__dirname, '../src/app/helpers')
 		},
 		modulesDirectories: ['node_modules'],
 		extensions: ['', '.js']
@@ -46,8 +47,8 @@ module.exports = {
 		new webpack.NoErrorsPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': {
-		    NODE_ENV: JSON.stringify(NODE_ENV)
-		  }
+				NODE_ENV: JSON.stringify(NODE_ENV)
+			}
 		})
 	]
 }
