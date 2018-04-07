@@ -9,8 +9,6 @@ import Notify from 'components/Notify'
 import * as gameActions from 'store/modules/game'
 import * as notifyActions from 'store/modules/notify'
 
-import './styles/index.styl'
-
 
 class App extends Component {
 	componentDidMount() {
