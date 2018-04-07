@@ -13,15 +13,12 @@ import './styles/index.styl'
 
 
 class App extends Component {
-	componentWillMount() {
+	componentDidMount() {
 
-		let gameData = JSON.parse( document.getElementById('app').getAttribute('data-game') )
+		// let gameData = JSON.parse( document.getElementById('app').getAttribute('data-game') )
 
 		store.dispatch(
-			gameActions.setGameData(
-				gameData.num,
-				gameData.type
-			)
+			gameActions.setGameData(this.props.gameId)
 		)
 
 

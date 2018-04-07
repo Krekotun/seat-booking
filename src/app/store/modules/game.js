@@ -17,12 +17,11 @@ export default function reducer(state = initialState, action) {
 	}
 }
 
-export function setGameData(number, type) {
+export function setGameData(gameId) {
 	return {
 		type: SET_GAME_DATA,
 		payload: {
-			num: number,
-			type: type
+			num: gameId
 		}
 	}
 }

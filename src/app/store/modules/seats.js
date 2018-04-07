@@ -88,7 +88,7 @@ export function getSeats(gameNum, gameType) {
 		dispatch(loadingActions.showLoading())
 
 		axios
-			.get('/api/get_tables.php', {
+			.get('/api/tables', {
 				params: {
 					game_num: gameNum,
 					game_type: gameType
@@ -111,7 +111,7 @@ export function saveSeat(data) {
 		dispatch(formPopupActions.setLoading(true))
 
 		axios
-			.post('api/set_tables.php', {
+			.post('api/tables', {
 				game_num: data.game_num,
 				game_type: data.game_type,
 				table_id: data.table_id,
