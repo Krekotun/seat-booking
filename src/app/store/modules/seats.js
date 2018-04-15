@@ -21,7 +21,7 @@ const initialState = (function() {
 
 		for (let i = 0; i < floors[floor].length; i++) {
 			result[result.length] = {
-				table_id: floors[floor][i],
+				tableId: floors[floor][i],
 				team: '',
 				page: +floor,
 				reserved: false,
@@ -40,7 +40,7 @@ export default function reducer(state = initialState, action = {}) {
 			return fetchSeats(state, action)
 		case BOOK_SEAT:
 			return state.map((seat) => {
-				if (+seat.table_id === +action.payload.table_id) {
+				if (+seat.tableId === +action.payload.tableId) {
 					return {
 						...seat,
 						...action.payload,
@@ -64,7 +64,7 @@ function fetchSeats(state, action) {
 		if (seat.reserved || seat.admins || !fetchedSeats.length) return result
 
 		fetchedSeats.forEach((fetchedSeat, i) => {
-			if (+seat.table_id === +fetchedSeat.table_id) {
+			if (+seat.tableId === +fetchedSeat.tableId) {
 				result = fillSeat(seat, fetchedSeat)
 			}
 		})
@@ -82,7 +82,7 @@ function fillSeat(state, seat) {
 }
 
 // actions
-export function getSeats(gameNum, gameType) {
+export function getSeats(gameId) {
 
 	return (dispatch) => {
 		dispatch(loadingActions.showLoading())
@@ -90,14 +90,16 @@ export function getSeats(gameNum, gameType) {
 		axios
 			.get('/api/tables', {
 				params: {
-					game_num: gameNum,
-					game_type: gameType
+					gameId
 				}
 			})
 			.then((response) => {
 				dispatch(clearSeats())
-				dispatch(setFetchedSeats(response.data))
+				dispatch(setFetchedSeats(response.data.tables))
 				dispatch(loadingActions.hideLoading())
+			})
+			.catch((error) => {
+				// console.log(error)
 			})
 	}
 
@@ -111,10 +113,9 @@ export function saveSeat(data) {
 		dispatch(formPopupActions.setLoading(true))
 
 		axios
-			.post('api/tables', {
-				game_num: data.game_num,
-				game_type: data.game_type,
-				table_id: data.table_id,
+			.post('/api/tables', {
+				gameId: data.gameId,
+				tableId: data.tableId,
 				team: data.team,
 				captain: data.captain,
 				phone: data.phone

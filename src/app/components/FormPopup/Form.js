@@ -8,9 +8,18 @@ import { saveSeat } from 'store/modules/seats'
 let Form = (props) => {
 	const { handleSubmit, pristine, reset, submitting, dispatch } = props
 
+
 	return (
 		<form
-			onSubmit={ handleSubmit( values => dispatch( saveSeat(values) ) ) }
+			onSubmit={
+				handleSubmit(
+					values => {
+						dispatch(saveSeat({ ...values, gameId: props.gameId }))
+						reset()
+					}
+
+				)
+			}
 		>
 			<fieldset>
 				<Field component={ Input } name="team" label="Команда" />
@@ -19,11 +28,7 @@ let Form = (props) => {
 
 				<Field component={ Input } name="phone" label="Телефон" />
 
-				<Field component='input' type='hidden' name="table_id"/>
-
-				<Field component='input' type='hidden' name="game_num"/>
-
-				<Field component='input' type='hidden' name="game_type"/>
+				<Field component='input' type='hidden' name="tableId"/>
 
 				<button type="submit">Зарезервировать</button>
 			</fieldset>
@@ -39,13 +44,14 @@ Form = reduxForm({
 })(Form)
 
 Form = connect(
-	state => ({
-		initialValues: {
-			...state.formPopup.data,
-			game_num: state.game.num,
-			game_type: state.game.type
+	state => {
+		return {
+			gameId: +state.game.id,
+			initialValues: {
+				...state.formPopup.data
+			}
 		}
-	})
+	}
 )(Form)
 
 export default Form

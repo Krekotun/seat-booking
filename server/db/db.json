@@ -1,8 +1,74 @@
 {
   "tables": [
     {
-      "id": "333aeehw8jea1u9gp",
-      "hola": 12
+      "gameId": 12,
+      "tableId": 5,
+      "team": "adsf",
+      "captain": "sdfasd",
+      "phone": "123123123213"
+    },
+    {
+      "gameId": 12,
+      "tableId": 7,
+      "team": "adsf",
+      "captain": "sdfasd",
+      "phone": "123123123213"
+    },
+    {
+      "gameId": null,
+      "tableId": 3,
+      "team": "df",
+      "captain": "asdfasd",
+      "phone": "23412341234"
+    },
+    {
+      "gameId": null,
+      "tableId": 4,
+      "team": "sadf",
+      "captain": "dsaf",
+      "phone": "123123"
+    },
+    {
+      "gameId": null,
+      "tableId": 2,
+      "team": "sadf",
+      "captain": "sdaf",
+      "phone": "23423432"
+    },
+    {
+      "gameId": null,
+      "tableId": 4,
+      "team": "ads",
+      "captain": "sdf",
+      "phone": "12312331"
+    },
+    {
+      "gameId": 12,
+      "tableId": 3,
+      "team": "sadfsdf",
+      "captain": "123123",
+      "phone": "123123123"
+    },
+    {
+      "gameId": 12,
+      "tableId": 11,
+      "team": "sadfsdf",
+      "captain": "123123",
+      "phone": "123123123"
+    },
+    {
+      "gameId": 12,
+      "tableId": 1,
+      "team": "sadfsdf",
+      "captain": "123123",
+      "phone": "123123123"
+    },
+    {
+      "gameId": 12,
+      "tableId": 10,
+      "team": "sadfsadf",
+      "captain": "dsafs",
+      "phone": "234234234"
     }
   ]
 }

@@ -14,19 +14,25 @@ db
 
 module.exports = {
 	list: (req, res) => {
-		res.status(203).json(req.query)
+		const gameId = req.query.gameId
+		const tables = db
+			.get('tables')
+			.filter(table => +table.gameId === +gameId)
+			.value()
+
+		res.status(200).json({ tables })
 	},
 
 	save_table: (req, res) => {
+		const gameId = req.body.gameId
+
 		const tables = db
 			.get('tables')
-			.push({
-				"id": uniqid(),
-				"hola": 12
-			})
+			.push(req.body)
+			.filter(table => +table.gameId === +gameId)
 			.write()
 
-		res.status(203).json({tables: 'tables'})
+		res.status(200).json({tables})
 	}
 }
 

@@ -1,3 +1,11 @@
 {
-  "tables": []
+  "tables": [
+		{
+			"table_id": 12,
+			"game_num": 1,
+			"phone": 12312312,
+			"captain": "vasea",
+			"team": "lol"
+		}
+	]
 }

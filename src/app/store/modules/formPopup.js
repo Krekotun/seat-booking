@@ -8,12 +8,11 @@ const initialState = {
 	isOpened: false,
 	isLoading: false,
 	data: {
-		table_id: null,
+		tableId: null,
 		team: "",
 		captain: "",
 		phone: "",
-		game_num: "",
-		game_type: ""
+		gameId: ""
 	},
 	position: {
 		x: 0,
@@ -60,7 +59,7 @@ export function openFormPopup(seat, position) {
 			type: OPEN,
 			payload: {
 				data: {
-					table_id: seat.table_id
+					tableId: seat.tableId
 				},
 				position: {
 					...position
@@ -68,7 +67,7 @@ export function openFormPopup(seat, position) {
 			}
 		})
 
-		dispatch( change('reservation', 'table_id', seat.table_id) )
+		dispatch( change('reservation', 'tableId', seat.tableId) )
 	}
 
 }

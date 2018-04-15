@@ -1,8 +1,7 @@
 const SET_GAME_DATA = 'SET_GAME_DATA'
 
 const initialState = {
-	num: '',
-	type: ''
+	id: null
 }
 
 export default function reducer(state = initialState, action) {
@@ -13,7 +12,8 @@ export default function reducer(state = initialState, action) {
 				...action.payload
 			}
 
-		default: return state
+		default:
+			return state
 	}
 }
 
@@ -21,7 +21,7 @@ export function setGameData(gameId) {
 	return {
 		type: SET_GAME_DATA,
 		payload: {
-			num: gameId
+			id: gameId
 		}
 	}
 }

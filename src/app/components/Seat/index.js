@@ -38,7 +38,7 @@ class Seat extends Component {
 	render() {
 		let klass = cx(
 			'iquiz_tables--table',
-			`-n_${this.props.seat.table_id}`,
+			`-n_${this.props.seat.tableId}`,
 			{
 				'-org': this.props.seat.admins,
 				'-reserved': this.props.seat.reserved
@@ -55,7 +55,7 @@ class Seat extends Component {
 
 					{ this.props.seat.admins === true ?
 						<Admins /> :
-						<Team table_id={ this.props.seat.table_id } />
+						<Team tableId={this.props.seat.tableId } />
 					}
 
 				</div>
